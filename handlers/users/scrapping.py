@@ -1,12 +1,9 @@
 import requests
-# from bs4 import BeautifulSoup
-import gspread
 
 
 def get_product_details(soup):
     products = []
 
-    # CSS selector to match elements with the class names provided
     product_list = soup.select('.a-section.a-spacing-base')
 
     for product in product_list:
@@ -136,7 +133,6 @@ def get_main(url, page_limit=400):
             print(f"Failed to retrieve the page. Status code: {response.status_code}")
             break
 
-    # save_to_google_sheets(all_products)
 
 
 

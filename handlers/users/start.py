@@ -3,7 +3,7 @@ from aiogram import types
 from aiogram.dispatcher.filters.builtin import CommandStart, Command
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-from handlers.users.scrapping import get_main, clear_all_rows
+from handlers.users.scrapping import get_main
 from loader import dp, db, bot
 from data.config import ADMINS
 
@@ -496,8 +496,6 @@ def get_active_subcategories():
 
 @dp.message_handler(text="/work", user_id=ADMINS)
 async def start_work(message: types.Message):
-    clear_all_rows("Class Data")
-    # Fetch all active subcategories
     active_subcategories = get_active_subcategories()
 
     if not active_subcategories:
@@ -509,7 +507,6 @@ async def start_work(message: types.Message):
         url = subcategory['url']  # Assuming the subcategory dictionary contains a 'url' key
         subcategory_name = subcategory['name']  # Assuming there's a 'name' key as well
         print(subcategory['name'])
-        # Scrape the subcategory and save the products
         get_main(url)
 
         await message.answer(f"Finished scraping for {subcategory_name}.")
