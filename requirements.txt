@@ -1,0 +1,5 @@
+aiogram~=2.25
+environs~=8.0.0
+requests
+gspread
+BeautifulSoup
